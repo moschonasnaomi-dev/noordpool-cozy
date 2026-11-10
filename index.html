@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cozy Pastel Noordpool (90° N) — Three.js Scene</title>
+  <!-- Google Fonts voor een zachte, schattige 'cute & cozy' uitstraling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 3D Canvas Container -->
+  <div id="scene-container"></div>
+
+  <!-- Cute & Cozy UI Overlay -->
+  <header class="ui-header">
+    <div class="title-card">
+      <span class="badge-90n">📍 90° N</span>
+      <div>
+        <h1>Cozy Pastel Noordpool</h1>
+        <p>Sleep om rond te kijken • Scroll om te zoomen • <strong>Klik op cadeautjes, bomen, sneeuwpop of de Noordpool!</strong></p>
+      </div>
+    </div>
+
+    <div class="status-pills">
+      <div class="pill fps-pill" title="Soepele prestaties (mikpunt 60 fps)">
+        ✨ <span id="fps-counter">60</span> FPS
+      </div>
+      <button id="btn-rainbow-mode" class="pill action-pill" title="Wissel het patroon van de regenbooglampjes">
+        🌈 Lampjes: <span id="light-mode-label">Regenboog Golf</span>
+      </button>
+      <button id="btn-open-all" class="pill action-pill" title="Open of sluit alle cadeautjes tegelijk">
+        🎁 Open Alle Cadeaus
+      </button>
+      <button id="btn-info" class="pill action-pill info-btn" title="Spiekbriefje om de code aan een klasgenoot uit te leggen">
+        📖 Code Uitleg
+      </button>
+    </div>
+  </header>
+
+  <!-- Toast / Melding onderaan wanneer je ergens op klikt -->
+  <div id="interaction-toast" class="toast">
+    ✨ Klik op een <strong>cadeautje</strong>, <strong>kerstboom</strong>, <strong>sneeuwpop</strong> of de <strong>90° N paal</strong>!
+  </div>
+
+  <!-- Klik-legende rechtsonder -->
+  <aside class="legend-card">
+    <h3>✨ Wat zit er in deze scene?</h3>
+    <ul>
+      <li><span class="dot pink"></span> <strong>Noordpool (90° N):</strong> Klik voor regenbooggolf</li>
+      <li><span class="dot mint"></span> <strong>7 Pastel Kerstbomen:</strong> Knipperende regenbooglampjes (klikbaar!)</li>
+      <li><span class="dot yellow"></span> <strong>5 Cadeautjes:</strong> Klik om open te laten springen</li>
+      <li><span class="dot lavender"></span> <strong>Werkplaats, Kattenhuisje, Sneeuwpop &amp; Kerstkat:</strong> Primitieve vormen (klikbaar!)</li>
+      <li><span class="dot pink"></span> <strong>Elfendorp:</strong> 5 huisjes met daklampjes &amp; elfjes (klikbaar!)</li>
+      <li><span class="dot lavender"></span> <strong>Mini Reuzerad:</strong> Kermisrad bij het Elfendorp (klikbaar!)</li>
+      <li><span class="dot mint"></span> <strong>Vijver &amp; Visjes:</strong> Pastelvisjes naast het Elfendorp (klikbaar!)</li>
+      <li><span class="dot yellow"></span> <strong>Noordpool Express:</strong> Treintje + station rond het eiland (klikbaar!)</li>
+      <li><span class="dot mint"></span> <strong>Rendierenstalling:</strong> Knusse stal met worteltjes &amp; rendieren (klikbaar!)</li>
+      <li><span class="dot sky"></span> <strong>Automatisch:</strong> Vliegende slee + rendieren, noorderlicht &amp; sneeuw</li>
+    </ul>
+  </aside>
+
+  <!-- Uitleg Modal voor klasgenoot / presentatie -->
+  <div id="info-modal" class="modal hidden" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">📖 Hoe leg je deze code uit aan een klasgenoot?</h2>
+        <button id="btn-close-info" class="close-btn" aria-label="Sluiten">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="explain-grid">
+          <div class="explain-item">
+            <h4>1. Basis van Three.js (Scene, Camera, Renderer)</h4>
+            <p>Een 3D-wereld bestaat uit 3 onderdelen: de <code>Scene</code> (het toneel), de <code>PerspectiveCamera</code> (onze ogen) en de <code>WebGLRenderer</code> (de schilder die alles 60x per seconde op het <code>&lt;canvas&gt;</code> tekent).</p>
+          </div>
+          <div class="explain-item">
+            <h4>2. OrbitControls (Rondkijken met de muis)</h4>
+            <p>Met <code>THREE.OrbitControls</code> kan je draaien, pannen en zoomen. We zetten <code>enableDamping = true</code> voor een zachte uitloop en beperken <code>maxPolarAngle</code> zodat je niet onder de sneeuwgrond kan duiken.</p>
+          </div>
+          <div class="explain-item">
+            <h4>3. Primitieve vormen &amp; Groepen (Werkplaats &amp; 90° N)</h4>
+            <p>Elk 3D-object (<code>Mesh</code>) combineert een vorm (<code>Geometry</code> zoals balk, cilinder, kegel, bol of torus) met een materiaal (<code>MeshStandardMaterial</code> in pastelkleuren). Met <code>THREE.Group()</code> lijmen we losse vormen samen tot één gebouw of slee.</p>
+          </div>
+          <div class="explain-item">
+            <h4>4. Regenboog Lampjes (HSL Kleuren &amp; Sinus)</h4>
+            <p>Op de 7 kerstbomen zitten bolletjes met een <code>emissive</code> (zelf-oplichtende) eigenschap. In de animatie-loop berekenen we met <code>Math.sin(tijd + fase)</code> en <code>setHSL()</code> vloeiende pastel-regenboogkleuren zonder zware lichtberekeningen.</p>
+          </div>
+          <div class="explain-item">
+            <h4>5. Particle System (Vallende Sneeuw)</h4>
+            <p>In plaats van 1200 losse 3D-bollen te maken (traag!), gebruiken we één <code>THREE.Points</code> object met een <code>BufferGeometry</code> lijst van <code>x, y, z</code> coördinaten. Elke frame zakken de <code>y</code>-waarden; onderaan springen ze terug naar boven.</p>
+          </div>
+          <div class="explain-item">
+            <h4>6. Raycasting (Klikbare Cadeaus &amp; Bomen)</h4>
+            <p>Een muis-klik is 2D, maar onze wereld is 3D. <code>THREE.Raycaster</code> schiet een onzichtbare laserstraal vanaf de camera door je muisaanwijzer de 3D-scene in en kijkt welk klikbaar object het eerst geraakt wordt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js en OrbitControls via CDN (werkt direct in de browser, ook via dubbelklik op index.html!) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Onze eigen uitgebreid gedocumenteerde Three.js code -->
+  <script src="script.js"></script>
+</body>
+</html>
