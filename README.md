@@ -1,85 +1,90 @@
-# 🎄 Cozy Pastel Noordpool (90° N)
+# 🎄 Cozy Pastel North Pole (90° N)
 
-Een interactieve 3D-kerstwereld op de Noordpool, gebouwd met **Three.js** in een zachte *cute & cozy* pastelstijl met knipperende regenbooglampjes, vallende sneeuw en klikbare verrassingen.
-
----
-
-## ✨ Kenmerken
-
-- **Besneeuwd eiland & nachthemel**: Zwevend sneeuweiland met pastel sneeuwheuvels, regenboog-stapstenen, een maan en 900 pastelsterren (`THREE.Points`).
-- **De echte Noordpool (90° N)**: Rood-wit gestreepte paal met gouden bol en bordje — klikbaar voor een regenbooggolf over het eiland.
-- **Werkplaats van de Kerstman**: Volledig opgebouwd uit Three.js primitieve vormen (hoofdgebouw, lavendel zij-atelier, babyblauwe inpakvleugel, veranda met zuurstok-pilaren, dakkapel, klokkentorentje, draaiend speelgoedrad en brievenbus).
-- **7 Pastel Kerstbomen & Elfendorp**: 7 kerstbomen met knipperende regenbooglampjes, 5 elfjes-huisjes met daklampjes, elfjes en een mini-reuzerad.
-- **Levendige extra's**: De **Noordpool Express** (trein + station rond het eiland), een **rendierenstalling**, een **vijver met visjes**, een **pastel-sneeuwpop**, een **witte kerstkat** met **kattenhuisje** en **5 cadeautjes** met verrassingen.
-- **Automatische animaties**: Vliegende slee met rendieren, golvend pastel noorderlicht, opstijgende rook uit de schoorsteen en een **vallende sneeuw** particle system (1200 sneeuwvlokjes).
-- **Soepele prestaties**: Ontworpen om vloeiend op **60 FPS** te draaien met hergebruikte geometrieën, `emissive` materialen en begrensde `pixelRatio` (max. 2).
+An interactive 3D Christmas world at the North Pole, built with **Three.js** in a soft, *cute & cozy* pastel aesthetic featuring blinking rainbow fairy lights, falling snow, and clickable surprises.
 
 ---
 
-## 🕹️ Besturing & Interactie
+## ✨ Features
 
-| Actie | Wat gebeurt er? |
-| :--- | :--- |
-| **Slepen (linkermuisknop)** | Draai de camera rond het eiland (`OrbitControls`) |
-| **Scrollen** | Zoom in en uit |
-| **Rechtermuisknop slepen** | Verplaats (pan) het camerapunt |
-| **Klikken op 3D-objecten** | Via `THREE.Raycaster` reageren o.a. cadeautjes, bomen, de 90° N paal, sneeuwpop, werkplaats, elfjes, huisjes, vijver, reuzerad, trein, station, kerstkat, kattenhuisje en rendierenstalling |
-
-### UI-knoppen bovenaan
-- **🌈 Lampjes**: Wissel tussen 4 lichtpatronen (`Regenboog Golf`, `Twinkel Pastel`, `Cozy Disco`, `Zachte Gloed`).
-- **🎁 Open Alle Cadeaus**: Open of sluit alle 5 cadeautjes tegelijk.
-- **📖 Code Uitleg**: Opent een ingebouwd spiekbriefje met uitleg over de Three.js-concepten.
+* **Snowy Island & Night Sky**: Floating snow island with pastel snow hills, rainbow stepping stones, a moon, and 900 pastel stars (`THREE.Points`).
+* **The True North Pole (90° N)**: Red-and-white candy-striped pole topped with a golden sphere and signpost — clickable to trigger a rainbow wave across the island.
+* **Santa's Workshop**: Fully constructed from Three.js primitive shapes (main building, lavender side studio, baby-blue gift-wrapping wing, porch with candy-cane pillars, dormer window, bell tower, rotating toy wheel, and mailbox).
+* **7 Pastel Christmas Trees & Elf Village**: 7 Christmas trees adorned with blinking rainbow lights, 5 elf houses with roofline lighting, elves, and a mini Ferris wheel.
+* **Vibrant Additions**: The **North Pole Express** (train + depot circling the island), a **reindeer stable**, a **pond with fish**, a **pastel snowman**, a **white Christmas cat** with a **cat house**, and **5 gift boxes** holding surprises.
+* **Automated Animations**: Flying sleigh pulled by reindeer, undulating pastel aurora borealis, rising chimney smoke, and a **falling snow** particle system (1,200 snowflakes).
+* **Smooth Performance**: Engineered to run seamlessly at **60 FPS** utilizing reused geometries, `emissive` materials, and a capped `pixelRatio` (max 2).
 
 ---
 
-## 🚀 Gebruik / Lokaal openen
+## 🕹️ Controls & Interaction
 
-Dit project gebruikt geen bundler of dependencies om te installeren; Three.js en `OrbitControls` worden geladen via CDN (let op: een internetverbinding is hiervoor nodig).
+| Action | Result |
+| --- | --- |
+| **Left-click + drag** | Rotate the camera around the island (`OrbitControls`) |
+| **Scroll** | Zoom in and out |
+| **Right-click + drag** | Pan the camera |
+| **Click 3D objects** | Powered by `THREE.Raycaster`: interact with presents, trees, the 90° N pole, snowman, workshop, elves, cottages, pond, Ferris wheel, train, station, Christmas cat, cat house, and reindeer stable |
 
-1. Clone of download deze repository:
-   ```bash
-   git clone <jouw-github-repo-url>
-   cd noordpool-cozy
-   ```
-2. Dubbelklik op `index.html` om de scene direct in je browser te openen (of gebruik een lokale server zoals VS Code *Live Server*).
+### Top UI Controls
+
+* **🌈 Lights**: Toggle through 4 lighting patterns (`Rainbow Wave`, `Twinkle Pastel`, `Cozy Disco`, `Soft Glow`).
+* **🎁 Open All Gifts**: Simultaneously open or close all 5 presents.
+* **📖 Code Walkthrough**: Opens an integrated cheat sheet explaining key Three.js concepts.
 
 ---
 
-## 📁 Projectstructuur
+## 🚀 Getting Started / Local Setup
+
+This project requires no build tools or package installations; Three.js and `OrbitControls` are loaded directly via CDN (an active internet connection is required).
+
+1. Clone or download this repository:
+```bash
+git clone <your-github-repo-url>
+cd noordpool-cozy
+
+```
+
+
+2. Double-click `index.html` to open the scene directly in your browser (or use a local development server such as VS Code's *Live Server*).
+
+---
+
+## 📁 Project Structure
 
 ```text
 noordpool-cozy/
-├── index.html   # HTML-structuur, UI-overlay, legenda, uitleg-modal en Three.js CDN-scripts
-├── style.css    # Pastel-styling voor de UI, knoppen, toast-meldingen en modal
-├── script.js    # Volledige Three.js-scene, netjes opgedeeld in 11 gedocumenteerde hoofdstukken
-├── UITLEG.md    # Overzicht van de opdrachteisen en spiekbriefje voor presentaties
-└── README.md    # Documentatie voor GitHub
+├── index.html   # HTML structure, UI overlay, legend, explanation modal, and Three.js CDN scripts
+├── style.css    # Pastel styling for the UI, buttons, toast notifications, and modal
+├── script.js    # Complete Three.js scene, organized into 11 documented sections
+├── UITLEG.md    # Assignment criteria overview and presentation cheat sheet
+└── README.md    # GitHub documentation
+
 ```
 
 ---
 
-## 🛠️ Gebruikte technieken
+## 🛠️ Built With
 
-- **HTML5 & CSS3** (met Google Fonts `Fredoka` & `Quicksand`)
-- **JavaScript (ES6)**
-- **[Three.js (r128)](https://threejs.org/)** — `PerspectiveCamera`, `WebGLRenderer`, `OrbitControls`, `MeshStandardMaterial`, `Points` / `BufferGeometry`, `Raycaster`
+* **HTML5 & CSS3** (styled with Google Fonts `Fredoka` & `Quicksand`)
+* **JavaScript (ES6)**
+* **[Three.js (r128)](https://threejs.org/)** — `PerspectiveCamera`, `WebGLRenderer`, `OrbitControls`, `MeshStandardMaterial`, `Points` / `BufferGeometry`, `Raycaster`
 
 ---
 
-## 📖 Code-indeling (`script.js`)
+## 📖 Code Organization (`script.js`)
 
-De broncode in `script.js` is opgedeeld in **11 genummerde hoofdstukken** met Nederlandstalige toelichting:
+The codebase in `script.js` is structured into **11 numbered sections** with detailed commentary:
 
 1. Scene, Camera & Renderer
-2. `OrbitControls` (rondkijken met de muis)
-3. Pastel Kleurenpalet & Belichting
-4. Besneeuwde Ondergrond & Nachtelijke Hemel met Sterren + Maan
-5. De Echte Noordpool (Rood-wit gestreepte paal op 90° N)
-6. De Werkplaats van de Kerstman (primitieve vormen)
-7. 7 Kerstbomen & Het Elfendorp met knipperende regenbooglampjes
-8. Zelfbewegende objecten (vliegende slee, noorderlicht, rook, trein)
-9. Vallende sneeuw als Particle System (`THREE.Points`)
-10. Raycasting & klikbare objecten
-11. De Animatie-loop (60 FPS) & Window Resize
+2. `OrbitControls` (mouse navigation)
+3. Pastel Color Palette & Lighting
+4. Snowy Terrain & Starry Night Sky with Moon
+5. The True North Pole (Red-and-white striped pole at 90° N)
+6. Santa's Workshop (primitive meshes)
+7. 7 Christmas Trees & The Elf Village with blinking rainbow lights
+8. Autonomous Objects (flying sleigh, aurora borealis, chimney smoke, train)
+9. Falling Snow Particle System (`THREE.Points`)
+10. Raycasting & Interactive Click Events
+11. Animation Loop (60 FPS) & Window Resizing
 
-Zie ook [UITLEG.md](UITLEG.md) voor een beknopt spiekbriefje per onderwerp.
+See [UITLEG.md](https://www.google.com/search?q=UITLEG.md) for a concise topic-by-topic reference guide.
